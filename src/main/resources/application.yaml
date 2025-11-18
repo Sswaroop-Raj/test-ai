@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: first-project
+    context-path:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+#      chat:
+#        options:
+#          model: gpt-5-nano
+#          temperature: 1
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ai?currentSchema=ai
+    username: postgres
+    password: postgres
+
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
+
+server:
+  port: 8080
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12      # or file:/full/path/to/keystore.p12
+    key-store-password: springboot   # what you set at key generation
+    key-store-type: pkcs12
+    key-alias: test-key                     # must match -alias above
+
+
+app:
+  weather:
+    api-key: cd20440d595c4d5b8ea113633251211
+
